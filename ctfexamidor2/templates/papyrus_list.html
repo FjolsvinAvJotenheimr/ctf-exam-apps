@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papyrus Archive - Document List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Digital Papyrus Project</h1>
+            <div class="subtitle">Document Archive</div>
+        </header>
+        
+        <nav>
+            <a href="/">Home</a> &gt; Archive
+        </nav>
+        
+        <main>
+            <div class="archive-card">
+                <h2>Public Collection</h2>
+                <p>Clearance Level: 1 (Basic)</p>
+                <p>Documents available: {{ papyrus_count }}</p>
+                
+                <div class="document-list">
+                    {% for i in range(1, papyrus_count + 1) %}
+                    <div class="document-item">
+                        <div class="document-icon">📜</div>
+                        <div class="document-info">
+                            <h3>Papyrus #{{ i }}</h3>
+                            <p>Historical Text</p>
+                        </div>
+                        <div class="document-actions">
+                            <a href="/papyrus/view?id={{ i }}" class="button small">View</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="download-section">
+                    <h3>Batch Actions</h3>
+                    <button id="download-all" class="button">Download All Documents</button>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Digital Papyrus Project | All Rights Reserved</p>
+            <!-- TODO: Make sure that other HTTP methods can't be used to retrieve the higher clearance collection. -->
+        </footer>
+    </div>
+    
+    <script>
+        document.getElementById('download-all').addEventListener('click', function() {
+            // Direct download link to get the ZIP file
+            window.location.href = '/papyrus/download-all?collection=public';
+        });
+    </script>
+</body>
+</html>

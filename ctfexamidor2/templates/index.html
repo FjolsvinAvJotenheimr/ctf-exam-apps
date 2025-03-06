@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Egyptian Papyrus Archive</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Digital Papyrus Project</h1>
+            <div class="subtitle">Ancient Egyptian Wisdom Digitized</div>
+        </header>
+        
+        <main>
+            <div class="intro-card">
+                <h2>Welcome, Scholar</h2>
+                <p  style="font-size: 20px;">
+                    The Digital Papyrus Project represents decades of archaeological work
+                    to preserve and digitize ancient Egyptian texts. Our team has carefully
+                    translated and cataloged hundreds of papyrus documents, revealing the
+                    wisdom of one of humanity's greatest civilizations.
+                </p>
+                <p>
+                    You have been granted <span class="highlight">Level 1 Clearance</span>,
+                    which provides access to our public collection of basic historical documents.
+                </p>
+                <p class="notice">
+                    Higher clearance levels are requrired to be able to view the restricted collection and is limited to senior researchers and
+                    archaeological team leaders.
+                </p>
+                
+                <div class="action-button">
+                    <a href="/papyrus" class="button">Enter the Archive</a>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Digital Papyrus Project | All Rights Reserved</p>
+            <!-- TODO: Remove development notes before production release -->
+        </footer>
+    </div>
+</body>
+</html>

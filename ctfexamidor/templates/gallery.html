@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Artifact Gallery{% endblock %}
+{% block content %}
+<div class="gallery-section">
+    <h2>Discovered Artifacts</h2>
+    <p>Click on any artifact to examine it more closely.</p>
+    
+    <div class="artifact-gallery">
+        {% for id, artifact in artifacts.items() %}
+        <div class="artifact" onclick="location.href='{{ url_for('view_artifact', artifact_id=id) }}'">
+            <img src="{{ url_for('static', filename='images/' + artifact.image) }}" alt="{{ artifact.name }}">
+            <h3>{{ artifact.name }}</h3>
+            <p>{{ artifact.era }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

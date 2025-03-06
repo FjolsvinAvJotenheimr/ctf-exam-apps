@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ancient Egyptian Tomb Explorer{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ancient Egyptian Tomb Explorer</h1>
+            <p style="font-size: 20px;">Uncover the secrets of the pharaohs</p>
+        </header>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+        
+        <footer>
+            <p>© 2025 Ministry of Egyptian Antiquities | Authorized Access Only</p>
+            {% if session.user_id %}
+                <nav class="footer-nav">
+                    <a href="{{ url_for('profile') }}" class="footer-link">View Profile</a> | 
+                    <a href="{{ url_for('logout') }}" class="footer-link">Leave the Tomb</a>
+                </nav>
+                <p class="user-info">Logged in as: {{ session.username }} (Clearance Level: {{ session.clearance_level }})</p>
+            {% endif %}
+        </footer>
+    </div>
+</body>
+</html>

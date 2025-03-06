@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5002:5000"  # Changed to 5002 for the host port
+    volumes:
+      - ./:/app
+      - pdf_cache:/app/static/pdf_cache  # Persistent volume for PDF cache
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+    restart: unless-stopped
+
+volumes:
+  pdf_cache:  # Define the volume for persistent storage

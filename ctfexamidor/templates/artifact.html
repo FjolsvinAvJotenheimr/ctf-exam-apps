@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ artifact.name }}{% endblock %}
+
+{% block content %}
+<div class="artifact-details">
+    <img src="{{ url_for('static', filename='images/' + artifact.image) }}" alt="{{ artifact.name }}" class="artifact-image">
+    
+    <div class="artifact-info">
+        <div class="info-row">
+            <div class="info-label" style="font-size: 18px;">Name:</div>
+            <div style="font-size: 18px;">{{ artifact.name }}</div>
+        </div>
+        
+        <div class="info-row">
+            <div class="info-label" style="font-size: 18px;">Era:</div>
+            <div style="font-size: 18px;">{{ artifact.era }}</div>
+        </div>
+        
+        <div class="info-row">
+            <div class="info-label" style="font-size: 18px;">Location:</div>
+            <div style="font-size: 18px;">{{ artifact.location }}</div>
+        </div>
+        
+        <div class="info-row">
+            <div class="info-label" style="font-size: 18px;">Description:</div>
+            <div style="font-size: 18px;">{{ artifact.description }}</div>
+        </div>
+        
+        {% if artifact.restricted %}
+        <div class="restricted-notice">
+            <strong>WARNING:</strong> This is a restricted artifact. Access to this information should be limited to researchers with Level 3 clearance or higher.
+        </div>
+        
+        {% if artifact.secret_note %}
+        <div class="secret-note">
+            <p><strong>Secret Hieroglyphic Note:</strong></p>
+            <p>{{ artifact.secret_note }}</p>
+        </div>
+        {% endif %}
+        
+        {% endif %}
+    </div>
+    
+    <div class="center-content">
+        {% if prev_artifact_id %}
+            <a href="{{ url_for('view_artifact', artifact_id=prev_artifact_id) }}" class="btn btn-nav"><< Previous Artifact</a>
+        {% endif %}
+        
+        <a href="{{ url_for('gallery') }}" class="btn">Return to Gallery</a>
+        
+        {% if next_artifact_id %}
+            <a href="{{ url_for('view_artifact', artifact_id=next_artifact_id) }}" class="btn btn-nav">Next Artifact >></a>
+        {% endif %}
+    </div>
+    
+    <div class="artifact-metadata">
+        <p>Artifact ID: {{ artifact_id }}</p>
+    </div>
+</div>
+{% endblock %}

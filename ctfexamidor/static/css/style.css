@@ -1,0 +1,343 @@
+/* Egyptian-themed styling */
+body {
+    font-family: 'IM Fell English SC', serif;
+    background-color: #f5e6c9;
+    color: #614b2a;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/papyrus_bg.jpg');
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: rgba(97, 75, 42, 0.8);
+    color: #f5e6c9;
+    border-bottom: 5px solid #c4a77d;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    color: #614b2a;
+    border-bottom: 2px solid #c4a77d;
+    padding-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(97, 75, 42, 0.8);
+    color: #f5e6c9;
+    border-top: 5px solid #c4a77d;
+    margin-top: 20px;
+    border-radius: 0 0 10px 10px;
+}
+
+.description {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #c4a77d;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #614b2a;
+    color: #f5e6c9;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.btn:hover {
+    background-color: #c4a77d;
+    color: #614b2a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.center-content {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Alert messages */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: rgba(76, 175, 80, 0.7);
+    color: #fff;
+    border: 1px solid #4CAF50;
+}
+
+.alert-danger {
+    background-color: rgba(244, 67, 54, 0.7);
+    color: #fff;
+    border: 1px solid #F44336;
+}
+
+.alert-info {
+    background-color: rgba(33, 150, 243, 0.7);
+    color: #fff;
+    border: 1px solid #2196F3;
+}
+
+/* Login Form */
+.login-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+    border: 2px solid #c4a77d;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 12px;
+    width: 80%;
+    border: 1px solid #c4a77d;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.hint {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 20px;
+}
+
+/* Artifact Gallery */
+.gallery-section {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #c4a77d;
+}
+
+.artifact-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.artifact {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #c4a77d;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.artifact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-color: #614b2a;
+}
+
+.artifact img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 3px solid #614b2a;
+}
+
+.artifact h3 {
+    margin: 10px 0 5px;
+    color: #614b2a;
+}
+
+/* Artifact Details */
+.artifact-details {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 2px solid #c4a77d;
+}
+
+.artifact-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 25px;
+    border-radius: 10px;
+    border: 3px solid #614b2a;
+}
+
+.artifact-info {
+    margin-bottom: 25px;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #c4a77d;
+    padding-bottom: 15px;
+}
+
+.info-label {
+    font-weight: bold;
+    width: 120px;
+    color: #614b2a;
+}
+
+.restricted-notice {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #8b0000;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    text-align: center;
+    border: 1px solid #8b0000;
+}
+
+.secret-note {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #f5e6c9;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+    text-align: center;
+    border: 2px solid #c4a77d;
+    font-family: 'Courier New', monospace;
+}
+
+.artifact-metadata {
+    font-size: 0.8em;
+    text-align: right;
+    color: #999;
+    margin-top: 25px;
+}
+
+.footer-link {
+    color: #f5e6c9;
+    text-decoration: underline;
+}
+
+.footer-link:hover {
+    color: #c4a77d;
+}
+
+.footer-nav {
+    margin: 10px 0;
+}
+
+.user-info {
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+/* Profile styles */
+.profile-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #c4a77d;
+}
+
+.profile-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #c4a77d;
+    margin-bottom: 20px;
+}
+
+.profile-icon {
+    flex: 0 0 120px;
+    margin-right: 20px;
+}
+
+.profile-icon img {
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid #614b2a;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.clearance-info {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #c4a77d;
+    margin-bottom: 20px;
+}
+
+.admin-note {
+    background-color: rgba(97, 75, 42, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px dashed #614b2a;
+}
+
+.btn-nav {
+    background-color: #8a6d3b;
+    margin: 0 10px;
+}
+
+.btn-nav:hover {
+    background-color: #a58651;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .artifact-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .info-row {
+        flex-direction: column;
+    }
+    
+    .info-label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    input[type="text"], input[type="password"] {
+        width: 90%;
+    }
+}

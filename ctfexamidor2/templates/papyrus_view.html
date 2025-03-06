@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papyrus #{{ doc_id }} - Digital Papyrus Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Digital Papyrus Project</h1>
+            <div class="subtitle">Document Viewer</div>
+        </header>
+        
+        <nav>
+            <a href="/">Home</a> &gt; <a href="/papyrus">Archive</a> &gt; Papyrus #{{ doc_id }}
+        </nav>
+        
+        <main>
+            <div class="viewer-card">
+                <div class="document-header">
+                    <h2>Papyrus #{{ doc_id }}</h2>
+                    <div class="document-meta">
+                        <span>Collection: Public</span>
+                        <span>Clearance: Level 1</span>
+                    </div>
+                </div>
+                
+                <div class="document-viewer">
+                    <div class="papyrus-container" style="width: 800px; height: 600px; overflow: hidden; margin: 0 auto;">
+                        <img src="{{ url_for('static', filename='img/papyrus_background.jpg') }}" alt="Papyrus document" class="papyrus-img" style="width: auto; height: auto; max-width: none; max-height: none;">
+                        <div class="papyrus-text"  style="font-size: 20px;">
+                            <h3>Ancient Papyrus #{{ doc_id }}</h3>
+                            {% if doc_id == 1 %}
+                            <p>This ancient text details the annual flooding cycles of the Nile and methods used by priests to predict them.</p>
+                            <p>Several calendrical calculations are included alongside religious ceremonies for Hapi, god of the annual flooding.</p>
+                            {% elif doc_id == 2 %}
+                            <p>A collection of hymns dedicated to Osiris, ruler of the afterlife and judge of the dead.</p>
+                            <p>The text includes descriptions of funeral rites and ceremonies to ensure safe passage to the Field of Reeds.</p>
+                            {% elif doc_id == 3 %}
+                            <p>Hieroglyphic instructions for the mummification process, including the preparation of natron and ceremonial oils.</p>
+                            <p>There are detailed drawings of canopic jars and instructions for organ preservation techniques.</p>
+                            {% elif doc_id == 4 %}
+                            <p>Records of trading expeditions to the land of Punt, listing exotic goods including myrrh, gold, and exotic animals.</p>
+                            <p>The text includes navigation markers and astronomical observations used for maritime journeys.</p>
+                            {% elif doc_id == 5 %}
+                            <p>An inventory of weapons and armor from the military campaigns of Ramesses II against the Hittite Empire.</p>
+                            <p>Includes tactical notes and battlefield formations used during the Battle of Kadesh.</p>
+                            {% else %}
+                            <p>This document contains rare insights into the sacred knowledge of ancient Egyptian mystery schools.</p>
+                            <p>The text appears to reference powerful secrets known only to high-ranking priests and pharaohs.</p>
+                            {% endif %}
+                            <p><em>To view the complete transcribed and translated document, please download the digital version.</em></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="document-actions">
+                    <a href="/papyrus/download?id={{ doc_id }}&collection={{ collection }}" class="button">Download PDF</a>
+                    <a href="/papyrus" class="button secondary">Back to Archive</a>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Digital Papyrus Project | All Rights Reserved</p>
+            <!-- TODO: Make sure to remove the ability to use PUT method to change collection to 'restricted' before production -->
+        </footer>
+    </div>
+</body>
+</html>

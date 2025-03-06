@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="profile-section">
+    <h2>Archaeologist Profile</h2>
+    
+    <div class="profile-card">
+        <div class="profile-icon">
+            <img src="{{ url_for('static', filename='images/' + user.profile_image) }}" alt="User Icon">
+        </div>
+        
+        <div class="profile-info" style="font-size: 18px;">
+            <div class="info-row">
+                <div class="info-label">Username:</div>
+                <div>{{ user.username }}</div>
+            </div>
+            
+            <div class="info-row">
+                <div class="info-label">Role:</div>
+                <div>{{ user.role|title }}</div>
+            </div>
+            
+            <div class="info-row">
+                <div class="info-label">Clearance Level:</div>
+                <div>{{ user.clearance_level }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="clearance-info" style="font-size: 18px;">
+        {% if user.clearance_level == 1 %}
+            <p>Level 1 Clearance: Basic access to public artifacts.</p>
+        {% elif user.clearance_level == 2 %}
+            <p>Level 2 Clearance: Access to staff-only artifacts and research notes.</p>
+        {% elif user.clearance_level == 3 %}
+            <p>Level 3 Clearance: Full access to all artifacts, including restricted items.</p>
+            <div class="admin-note">
+                <p><strong>Administrator Note:</strong> With your Level 3 clearance, you can access all restricted artifacts in the collection, including the Mask of Osiris.</p>
+                <p><strong>Security Note:</strong> Remember to use the proper artifact ID for sensitive items: <code>{{ user.secret_artifact_id }}</code></p>
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="center-content">
+        <a href="{{ url_for('gallery') }}" class="btn">Return to Gallery</a>
+    </div>
+</div>
+{% endblock %}

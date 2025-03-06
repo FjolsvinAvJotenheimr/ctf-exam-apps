@@ -1,0 +1,47 @@
+<!-- Include the Google Font for hieroglyphs -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+
+<style>
+    /* Inline styles for hieroglyphs with 18px font size */
+    .hieroglyphs {
+        font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', 'Arial Unicode MS', serif;
+        font-size: 18px !important;
+        line-height: 1.5;
+    }
+</style>
+
+<div class="pharaoh-interface">
+    <h3  style="font-size: 20px;">Pharaoh's Administrative Chamber</h3>
+    <p class="admin-warning" style="color: #c4512b; font-weight: bold;"  style="font-size: 20px;">Warning: You have accessed a restricted area!</p>
+    
+    <div style="margin: 20px 0; padding: 15px; border: 1px solid #614726; background-color: #fdf6e3;">
+        <h4  style="font-size: 20px;">Pharaoh's Administrative Functions</h4>
+        
+        <div class="admin-buttons" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+            <form action="/admin-function" method="post">
+                <input type="hidden" name="function" value="treasury">
+                <button type="submit" style="background-color: #8b4513; color: #f5e1a3; border: none; padding: 8px 12px; border-radius: 3px; cursor: pointer;" class="hieroglyphs">𓃙𓌮𓆣𓀠𓋪𓇁𓍄𓆣𓏏𓉡𓍓𓍄𓍵𓋪𓇌𓊿𓌩𓎛𓆣𓌩𓎛𓉡</button>
+            </form>
+            
+            <form action="/admin-function" method="post">
+                <input type="hidden" name="function" value="servants">
+                <button type="submit" style="background-color: #8b4513; color: #f5e1a3; border: none; padding: 8px 12px; border-radius: 3px; cursor: pointer;" class="hieroglyphs">𓆡𓏏𓌩𓏏𓆑𓆣𓋪𓄁𓆣𓍄𓋝𓏏𓌩𓎛𓉡</button>
+            </form>
+            
+            <form action="/admin-function" method="post">
+                <input type="hidden" name="function" value="tribute">
+                <button type="submit" style="background-color: #8b4513; color: #f5e1a3; border: none; padding: 8px 12px; border-radius: 3px; cursor: pointer;" class="hieroglyphs">𓄀𓆣𓋏𓊿𓍄𓍷𓋪𓇁𓍄𓌮𓈬𓍓𓎛𓆣𓉡</button>
+            </form>
+            
+            <form action="/pharaoh/{{ secret_path }}/secrettomb" method="get">
+                <button type="submit" style="background-color: #8b4513; color: #f5e1a3; border: none; padding: 8px 12px; border-radius: 3px; cursor: pointer; font-weight: bold;" class="hieroglyphs">𓏬𓋏𓋏𓆣𓉡𓉡𓋪𓄁𓆣𓋏𓍄𓆣𓎛𓋪𓇁𓊿𓋫𓈬</button>
+            </form>
+            
+            <form action="/admin-function" method="post">
+                <input type="hidden" name="function" value="monuments">
+                <button type="submit" style="background-color: #8b4513; color: #f5e1a3; border: none; padding: 8px 12px; border-radius: 3px; cursor: pointer;" class="hieroglyphs">𓃦𓍖𓏏𓌩𓋪𓆡𓊿𓌩𓍓𓋫𓆣𓌩𓎛𓉡</button>
+            </form>
+        </div>
+    </div>
+    
+</div>

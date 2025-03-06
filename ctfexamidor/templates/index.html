@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}Ancient Egyptian Tomb Explorer{% endblock %}
+
+{% block content %}
+<div class="description" style="font-size: 18px;">
+    <h2>Welcome to the Ancient Egyptian Tomb Explorer</h2>
+    <p>You stand at the threshold of ancient knowledge, where the secrets of the pharaohs await.</p>
+    <p>The digital archives of recently discovered Egyptian tombs have been carefully cataloged by the Ministry of Egyptian Antiquities. Each artifact holds a piece of the past, waiting to be understood.</p>
+    <p>The House of Anubis oversees this collection and restricts access to certain sacred artifacts that are deemed too powerful for the uninitiated.</p>
+    
+    <div class="center-content">
+        <a href="{{ url_for('login') }}" class="btn">Enter the Tomb</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<div class="access-denied" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-image: url('/static/ancient-door.jpg'); background-size: cover; background-position: center; z-index: 1000; display: flex; justify-content: center; align-items: center; overflow: auto;">
+    <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px; max-width: 600px; margin: 20px;">
+        <h3 style="color: #FFD700; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);">Sacred Chamber Sealed!</h3>
+        
+        <div style="padding: 15px; border: 2px solid #c4512b; background-color: rgba(249, 229, 161, 0.9); margin: 15px 0; box-shadow: inset 0 0 10px rgba(139, 69, 19, 0.5);">
+            <p style="font-weight: bold; color: #8b4513;">The sacred seals prevent your entry to this chamber.</p>
+            <p style="color: #8b4513;">Only the <span style="font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', 'Arial Unicode MS', serif; font-size: 24px;">𓃦𓎉𓏏𓍄𓏏𓊿𓎉</span> or designated high priests bearing the royal seal may access these sacred functions.</p>
+            
+            <div style="font-family: 'IM Fell English SC', serif, serif; background-color: rgba(249, 229, 161, 0.9); color: #8b4513; padding: 15px; border: 1px solid #c4512b; border-radius: 5px; margin-top: 15px;">
+                <span style="font-weight: bold; color: #c4512b;">≈ Hieroglyphic Warning ≈</span><br>
+                <p style="font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', 'Arial Unicode MS', serif; font-size: 18px; line-height: 1.5; margin: 10px 0;">DECREE: 𓄀𓆺𓉬𓏬𓂻𓃟𓏬𓀟𓇁𓈉𓂶𓀊𓇁𓏵𓇌𓏬𓇁𓏵𓆺𓀊𓃟𓄀𓂶𓆄𓀟𓏵𓄀𓂶𓃜</p>
+                <p style="font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', 'Arial Unicode MS', serif; font-size: 18px; line-height: 1.5; margin: 10px 0;">STATUS: 𓋸𓄀𓏬𓇁𓈉𓃟𓆺𓆟𓃟𓏬𓀊𓀟𓐍𓏵𓄁𓃟𓏵𓆡𓆡𓏵𓀊𓂶𓀊𓇁</p>
+                <p style="font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', 'Arial Unicode MS', serif; font-size: 18px; line-height: 1.5; margin: 10px 0;">𓃙𓏵𓄁𓏵𓇁𓆺𓄀 [UNKNOWN MORTAL]</p>
+                <p style="font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', 'Arial Unicode MS', serif; font-size: 18px; line-height: 1.5; margin: 10px 0;">ENTRY: 𓆟𓆺𓄀𓐍𓏵𓃜𓃜𓂶𓀊𓋪𓐍𓉬𓋪𓄀𓆺𓉬𓏬𓂻𓋪𓃜𓂶𓇌𓄀𓂶𓂶</p>
+            </div>
+        </div>
+        
+        <p style="color: #FFD700; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);">This intrusion attempt has been recorded in the sacred scrolls.</p>
+        <p style="color: #FFD700; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);"><small>If you believe you have been wrongfully denied, please present your credentials to the High Priest of Amenhotep.</small></p>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="window.history.back()" style="background-color: #8b4513; color: #FFD700; border: 2px solid #FFD700; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);">Return to Previous Chamber</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add font link explicitly in the partial -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+
+<script>
+// Make sure parent elements don't constrain the fullscreen view
+document.addEventListener('DOMContentLoaded', function() {
+    // Find the parent of our access-denied div (likely the #result div)
+    const accessDeniedDiv = document.querySelector('.access-denied');
+    if (accessDeniedDiv && accessDeniedDiv.parentElement) {
+        // Make the parent take up full space
+        accessDeniedDiv.parentElement.style.width = '100%';
+        accessDeniedDiv.parentElement.style.height = 'auto';
+        accessDeniedDiv.parentElement.style.maxHeight = 'none';
+        accessDeniedDiv.parentElement.style.overflow = 'visible';
+        accessDeniedDiv.parentElement.style.margin = '0';
+        accessDeniedDiv.parentElement.style.padding = '0';
+        
+        // If there's a grandparent, do the same
+        if (accessDeniedDiv.parentElement.parentElement) {
+            accessDeniedDiv.parentElement.parentElement.style.width = '100%';
+            accessDeniedDiv.parentElement.parentElement.style.maxWidth = 'none';
+            accessDeniedDiv.parentElement.parentElement.style.margin = '0';
+            accessDeniedDiv.parentElement.parentElement.style.padding = '0';
+        }
+    }
+});
+</script>

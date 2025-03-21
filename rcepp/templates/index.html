@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}Ancient Artifacts{% endblock %}
+
+{% block content %}
+<h2>Sacred Artifacts of Ancient Egypt</h2>
+<p>Welcome to the Temple of Khnum, where we preserve the most powerful artifacts of the ancient world. Only the worthy may study these sacred objects...</p>
+
+<div class="artifacts-container">
+    {% for artifact in artifacts %}
+    <div class="artifact-card">
+        <img src="/static/images/artifact_{{ artifact.id }}.jpg" alt="{{ artifact.name }}">
+        <h3>{{ artifact.name }}</h3>
+        <p><strong>Location:</strong> {{ artifact.location }}</p>
+        <p><strong>Power Level:</strong> {{ artifact.power }}</p>
+        <a href="/artifact/{{ artifact.id }}" class="card-button">Study Artifact</a>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="temple-scanner">
+    <div class="scanner-header">
+        <img src="/static/images/ankh.png" alt="Ankh Symbol">
+        <h3>Sacred Text Translator</h3>
+    </div>
+    <p>Use this ancient tool to translate hieroglyphic texts found within the temple.</p>
+    
+    <div class="form-group">
+        <label for="ancient-text">Enter Sacred Text:</label>
+        <textarea id="ancient-text" class="form-control" rows="5" placeholder="Paste hieroglyphic text here..."></textarea>
+    </div>
+    
+    <button id="translate-btn" class="btn">Translate with Ancient Magic</button>
+    
+    <div id="translation-output" class="output-container"></div>
+</div>
+
+<div class="temple-scanner">
+    <div class="scanner-header">
+        <img src="/static/images/scarab.png" alt="Scarab Symbol">
+        <h3>Configure Temple Scanner</h3>
+    </div>
+    <p>Advanced settings for the temple scanner. Only high priests should modify these settings.</p>
+    
+    <div class="form-group">
+        <label for="scanner-config">Scanner Configuration (JSON format):</label>
+        <textarea id="scanner-config" class="form-control" rows="5" placeholder='{"scan_timeout": 5000, "debug_mode": false}'></textarea>
+    </div>
+    
+    <button id="configure-btn" class="btn">Update Scanner Configuration</button>
+    <button id="debug-scanner-btn" class="btn">Inspect Scanner</button>
+    
+    <div id="config-output" class="output-container"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Translate button functionality
+    document.getElementById('translate-btn').addEventListener('click', function() {
+        const text = document.getElementById('ancient-text').value;
+        const outputContainer = document.getElementById('translation-output');
+        
+        if (!text) {
+            alert('Please enter some text to translate!');
+            return;
+        }
+        
+        fetch('/api/sacred-texts/translate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text })
+        })
+        .then(response => {
+            console.log("Translation response status:", response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Translation response data:", data);
+            outputContainer.style.display = 'block';
+            
+            if (data.status === 'success') {
+                outputContainer.innerHTML = `
+                    <strong>Translation:</strong> ${data.translation}<br>
+                    <strong>Scribe's Notes:</strong><br>${data.scribe_notes}
+                `;
+            } else {
+                outputContainer.innerHTML = `<strong>Error:</strong> ${data.message}`;
+            }
+        })
+        .catch(error => {
+            console.error("Translation error:", error);
+            outputContainer.style.display = 'block';
+            outputContainer.innerHTML = `<strong>Error:</strong> ${error.message}`;
+        });
+    });
+    
+    // Configure scanner button functionality
+    document.getElementById('configure-btn').addEventListener('click', function() {
+        const config = document.getElementById('scanner-config').value;
+        const outputContainer = document.getElementById('config-output');
+        
+        try {
+            // Validate JSON
+            JSON.parse(config);
+            console.log("Sending scanner config:", config);
+            
+            fetch('/api/scanner/configure', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: config
+            })
+            .then(response => {
+                console.log("Scanner config response status:", response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Scanner config response data:", data);
+                outputContainer.style.display = 'block';
+                
+                if (data.status === 'success') {
+                    outputContainer.innerHTML = `<strong>Success:</strong> ${data.message}`;
+                } else {
+                    outputContainer.innerHTML = `<strong>Error:</strong> ${data.message}`;
+                }
+            })
+            .catch(error => {
+                console.error("Scanner config error:", error);
+                outputContainer.style.display = 'block';
+                outputContainer.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            });
+            
+        } catch (e) {
+            console.error("Invalid JSON:", e);
+            alert('Invalid JSON configuration! Please check your syntax.');
+        }
+    });
+});
+
+// Add this to your existing DOMContentLoaded function in index.html
+document.getElementById('debug-scanner-btn').addEventListener('click', function() {
+    const outputContainer = document.getElementById('config-output');
+    
+    fetch('/api/scanner/debug', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        console.log("Scanner debug response status:", response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log("Scanner debug response data:", data);
+        outputContainer.style.display = 'block';
+        
+        if (data.status === 'success') {
+            let attrs = data.scanner_attributes;
+            let attrHtml = '<strong>Scanner Configuration:</strong><br>';
+            for (let key in attrs) {
+                attrHtml += `<strong>${key}:</strong> ${attrs[key]}<br>`;
+            }
+            outputContainer.innerHTML = attrHtml;
+        } else {
+            outputContainer.innerHTML = `<strong>Error:</strong> ${data.message}`;
+        }
+    })
+    .catch(error => {
+        console.error("Scanner debug error:", error);
+        outputContainer.style.display = 'block';
+        outputContainer.innerHTML = `<strong>Error:</strong> ${error.message}`;
+    });
+});
+</script>
+{% endblock %}

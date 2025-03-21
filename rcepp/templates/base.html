@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple of Khnum - {% block title %}Ancient Artifacts{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'IM Fell English SC', serif;
+            background-color: #f5e6c9;
+            background-image: url('/static/images/papyrus_bg.jpg');
+            color: #4a3928;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #8b5a2b;
+            color: #f0d8a8;
+            text-align: center;
+            padding: 1rem;
+            background-image: url('/static/images/header_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 2.5rem;
+        }
+        nav {
+            background-color: #736046;
+            padding: 0.5rem 0;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 10px;
+        }
+        nav a {
+            color: #f0d8a8;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #fff;
+        }
+        footer {
+            background-color: #4a3928;
+            color: #f0d8a8;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+        .artifacts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .artifact-card {
+            background-color: #f0d8a8;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 1px solid #8b5a2b;
+        }
+        .artifact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .artifact-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        .artifact-card h3 {
+            margin-top: 0;
+            color: #8b5a2b;
+            border-bottom: 1px solid #8b5a2b;
+            padding-bottom: 10px;
+        }
+        .artifact-card p {
+            margin: 5px 0;
+        }
+        .card-button {
+            display: inline-block;
+            background-color: #8b5a2b;
+            color: #f0d8a8;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .card-button:hover {
+            background-color: #6a4521;
+        }
+        .detail-container {
+            background-color: #f0d8a8;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            border: 2px solid #8b5a2b;
+        }
+        .detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .detail-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+            border: 1px solid #8b5a2b;
+        }
+        .detail-info h2 {
+            margin-top: 0;
+            color: #8b5a2b;
+            border-bottom: 1px solid #8b5a2b;
+            padding-bottom: 10px;
+        }
+        .temple-scanner {
+            background-color: #f0d8a8;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid #8b5a2b;
+        }
+        .scanner-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .scanner-header h3 {
+            margin: 0;
+            color: #8b5a2b;
+        }
+        .scanner-header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4a3928;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'IM Fell English SC', serif;
+            background-color: #faf1dc;
+        }
+        .btn {
+            background-color: #8b5a2b;
+            color: #f0d8a8;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'IM Fell English SC', serif;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #6a4521;
+        }
+        .output-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #faf1dc;
+            border: 1px solid #8b5a2b;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+        .eye-of-horus {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .session-timer {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #736046;
+            color: #f0d8a8;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <img src="/static/images/eye_of_horus.png" alt="Eye of Horus" class="eye-of-horus">
+        <h1>Temple of Khnum</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin">Priest Portal</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <p>© 2025 Temple of Khnum - All rites reserved</p>
+        <div id="session-timer" class="session-timer">Loading session information...</div>
+    </footer>
+    
+    <script>
+// Function to update session timer
+function updateSessionTimer() {
+    console.log("Fetching session info...");
+    fetch('/api/session-info')
+        .then(response => {
+            console.log("Session info response status:", response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Session info data:", data);
+            if (data.status === 'success') {
+                document.getElementById('session-timer').innerHTML = 
+                    `Your temple session expires in ${data.time_remaining}`;
+                
+                // Parse the expiry time
+                const expiresAt = data.expires_at;
+                startLocalCountdown(expiresAt);
+            } else {
+                document.getElementById('session-timer').innerHTML = 
+                    'Unable to retrieve session information: ' + data.message;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching session info:', error);
+            document.getElementById('session-timer').innerHTML = 
+                'Error connecting to the temple network: ' + error.message;
+        });
+}
+
+// Local countdown that doesn't require constant server requests
+function startLocalCountdown(expiresAt) {
+    // Parse the HH:MM:SS time
+    const parts = expiresAt.split(':');
+    const expiryHour = parseInt(parts[0]);
+    const expiryMinute = parseInt(parts[1]);
+    const expirySecond = parseInt(parts[2]);
+    
+    // Create a target date object for today with the expiry time
+    const now = new Date();
+    const target = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        expiryHour,
+        expiryMinute,
+        expirySecond
+    );
+    
+    // If the target time is in the past (already passed today),
+    // add one day to make it tomorrow
+    if (target <= now) {
+        target.setDate(target.getDate() + 1);
+    }
+    
+    // Calculate total seconds until expiry for storing in sessionStorage
+    const totalSecondsUntilExpiry = Math.floor((target - now) / 1000);
+    
+    // Store expiry information in sessionStorage so it persists across page navigation
+    sessionStorage.setItem('expiryTimestamp', Date.now() + (totalSecondsUntilExpiry * 1000));
+    
+    // Clear any existing interval
+    if (window.countdownInterval) {
+        clearInterval(window.countdownInterval);
+    }
+    
+    // Start the countdown
+    function updateCountdown() {
+        const now = new Date();
+        const expiryTimestamp = parseInt(sessionStorage.getItem('expiryTimestamp'));
+        const diff = expiryTimestamp - Date.now();
+        
+        if (diff <= 0) {
+            // Time's up, show notification and refresh the session info from server
+            clearInterval(window.countdownInterval);
+            
+            // Show a notification
+            const timerElement = document.getElementById('session-timer');
+            timerElement.innerHTML = 
+                `<strong style="color:red">Your temple session has expired! A new session has been created.</strong>`;
+            timerElement.style.backgroundColor = '#ffeeee';
+            timerElement.style.padding = '10px';
+            timerElement.style.borderRadius = '5px';
+            
+            // Delay before refreshing session info to allow user to see the notification
+            setTimeout(() => {
+                updateSessionTimer();
+            }, 5000);
+            
+            return;
+        }
+        
+        // Calculate minutes and seconds
+        const minutes = Math.floor(diff / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        
+        // Update the display
+        document.getElementById('session-timer').innerHTML = 
+            `Your temple session expires in ${minutes} minutes, ${seconds} seconds`;
+            
+        // Add warning styles when less than 5 minutes remain
+        if (minutes < 5) {
+            document.getElementById('session-timer').style.color = 'red';
+            
+            // Flash the timer when less than 1 minute remains
+            if (minutes < 1) {
+                document.getElementById('session-timer').style.fontWeight = 
+                    (seconds % 2 === 0) ? 'bold' : 'normal';
+            }
+        }
+    }
+    
+    // Update immediately and then every second
+    updateCountdown();
+    window.countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// Update session timer when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded, checking for existing timer");
+    
+    // Check if we have an existing timer in sessionStorage
+    const expiryTimestamp = sessionStorage.getItem('expiryTimestamp');
+    
+    if (expiryTimestamp && (parseInt(expiryTimestamp) > Date.now())) {
+        // Resume existing countdown without fetching from server
+        const remainingMs = parseInt(expiryTimestamp) - Date.now();
+        const minutes = Math.floor(remainingMs / 60000);
+        const seconds = Math.floor((remainingMs % 60000) / 1000);
+        
+        document.getElementById('session-timer').innerHTML = 
+            `Your temple session expires in ${minutes} minutes, ${seconds} seconds`;
+            
+        // Start the countdown based on stored timestamp
+        startLocalCountdown(new Date(parseInt(expiryTimestamp)).toTimeString().substring(0, 8));
+    } else {
+        // No valid existing timer, fetch from server
+        console.log("No valid existing timer, fetching from server");
+        updateSessionTimer();
+    }
+    
+    // Also refresh from server every 5 minutes to keep in sync
+    setInterval(updateSessionTimer, 300000); // 5 minutes
+});
+    </script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

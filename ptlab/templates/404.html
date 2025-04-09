@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hieroglyphics">
+    <img src="/static/images/lost_hieroglyphics.jpg" alt="Lost in Hieroglyphics" width="600">
+</div>
+
+<div class="story">
+    <p>You wander into a dark, unfamiliar corridor of the pyramid. The walls are blank, without hieroglyphics, as if this section was never meant to be found.</p>
+    
+    <p>A ghostly voice echoes through the empty passage:</p>
+    
+    <p><em>"Lost traveler, you've strayed from your path,<br>
+    This chamber exists not, even in wrath.<br>
+    Return to the start and seek the true way,<br>
+    For here in the void, you'll forever stay."</em></p>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <button onclick="window.location.href='/'">Return to the Beginning</button>
+</div>
+{% endblock %}

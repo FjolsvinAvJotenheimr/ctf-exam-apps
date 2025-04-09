@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hieroglyphics">
+    <img src="/static/images/dice_hieroglyphics.jpg" alt="Ancient Egyptian Dice Game" width="600">
+</div>
+
+<div class="story">
+    <p>The god of mischief looks displeased as you solve his first challenge. He grumbles and then speaks:</p>
+    
+    <p><em>"The first game was easy, that's of course true,<br>
+    But this one brings darkness, perhaps two.<br>
+    A game of chance where shadows grow deep,<br>
+    Where every resource needs a location unique.<br>
+    Look into the shadow realm, shrouded and veiled,<br>
+    The secrets within are carefully concealed.<br>
+    Three dice I shall throw with faces eighteen,<br>
+    Predict their sum total, and you'll be keen."</em></p>
+</div>
+
+<div class="dice-container">
+    {% for value in dice_values %}
+    <div class="dice">{{ value }}</div>
+    {% endfor %}
+</div>
+
+<p style="text-align: center; font-weight: bold; font-size: 1.2em;">Total: {{ total }}</p>
+
+<form action="{{ url_for('challenge_2_submit') }}" method="post">
+    <input type="text" name="guess" placeholder="Enter your prediction for the next roll...">
+    <button type="submit">Submit</button>
+</form>
+
+{% if error %}
+<div class="error">
+    {{ error }}
+</div>
+{% endif %}
+{% endblock %}

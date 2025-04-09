@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hieroglyphics">
+    <img src="/static/images/hieroglyphics_banner.jpg" alt="Ancient Egyptian Hieroglyphics" width="600">
+</div>
+
+<div class="story">
+    <p>On your investigation of a newly discovered section of a pyramid, you see a hallway filled with unknown hieroglyphics. As you enter, the door behind you closes shut, and you cannot open it.</p>
+    
+    <p>Unbeknownst to you, you have walked into the domain of the forgotten but still vaguely powerful god of mischief. He speaks to you:</p>
+    
+    <p><em>"Little archaeologist, with no gifts you appear,<br>
+    Walking boldly where mortals should fear.<br>
+    To gain your freedom, you must find what exists in the etc folder,<br>
+    But remember, you are always 2 steps back, not any closer.<br>
+    The first test is simple, a number I hold,<br>
+    Guess it correctly, and secrets unfold.<br>
+    Between one and a million my number is found,<br>
+    Yet hidden like passwd in places profound.<br>
+    Step not once, but take two strides back,<br>
+    Lest you be trapped and lose the track.<br>
+    The sacrificial lamb may lead you astray,<br>
+    Unless you see through the dotted display."</em></p>
+</div>
+
+<form action="{{ url_for('submit_guess') }}" method="post">
+    <input type="text" name="guess" placeholder="Enter your guess or find another way...">
+    <button type="submit">Submit</button>
+</form>
+
+{% if error %}
+<div class="error">
+    {{ error }}
+</div>
+{% endif %}
+{% endblock %}

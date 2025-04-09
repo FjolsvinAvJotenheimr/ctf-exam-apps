@@ -1,0 +1,5 @@
+# These spells are only to be used by trained priests
+
+Spell of Opening: Wep-em-heset
+Spell of Protection: Sa-Asar
+Spell of Transformation: Kheperu

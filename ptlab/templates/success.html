@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hieroglyphics">
+    <img src="/static/images/treasure.jpg" alt="Egyptian Treasure" width="600">
+</div>
+
+<div class="story">
+    <p>As you input the correct password, the massive stone door begins to rumble and slowly slides open. A dazzling golden light pours out from within, momentarily blinding you.</p>
+    
+    <p>When your vision clears, you find yourself standing before a chamber filled with unimaginable treasures - golden statues, jewel-encrusted artifacts, and ornate sarcophagi.</p>
+    
+    <p>The god of mischief appears one final time, but now with a look of respect:</p>
+    
+    <p><em>"Clever mortal, you've bested my games with skill,<br>
+    By traversing the paths that most never will.<br>
+    The treasures are yours, as promised before,<br>
+    Take what you've earned through the opening door.<br>
+    Remember this day when you challenged a god,<br>
+    And walked through my shadows, though perilously odd.<br>
+    This flag you may claim as proof of your feat,<br>
+    A master of paths where dark secrets meet."</em></p>
+</div>
+
+<div class="success">
+    <p>Congratulations! You have successfully completed all challenges!</p>
+</div>
+
+<div class="flag">
+    <p>Your flag is: {{ flag }}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hieroglyphics">
+    <img src="/static/images/treasure_door.jpg" alt="Ancient Egyptian Treasure Door" width="600">
+</div>
+
+<div class="story">
+    <p>The god of mischief is now visibly enraged, his form flickering between shadow and light:</p>
+    
+    <p><em>"No. NOOOOOO! This is not at all what's supposed to happen!<br>
+    You think you can outplay me? Pathetic mortal!<br>
+    You shall rot in this hallway and never gain my treasure or your freedom!"</em></p>
+    
+    <p>You are alone in this cold hallway, with the door closely shut behind you. You venture forward to another door which marks the entrance to the god of mischief's treasure. The air feels cold and heavy with ancient magic.</p>
+    
+    <p><em>"Explore the path to my dwelli<span style="font-size: 1.25rem; font-weight: bold;">n</span>g place divine,<br>
+    Travel back where connections and names align.<br>
+    Carefully thro<span style="font-size: 1.25rem; font-weight: bold;">u</span>gh passages, take two steps behind,<br>
+    Hidden origins of digital homes you'<span style="font-size: 1.25rem; font-weight: bold;">ll</span> find.<br>
+    O<span style="font-size: 1.25rem; font-weight: bold;">b</span>serve how scripts twist what <span style="font-size: 1.25rem; font-weight: bold;">y</span>ou compose,<br>
+    Subtle deceptions veil paths in strange clothes.<br>
+    <span style="font-size: 1.25rem; font-weight: bold;">T</span>he zero offering, subtle and keen,<br>
+    Solutions will surface, wh<span style="font-size: 1.25rem; font-weight: bold;">e</span>re clues are seen."</em></p>
+</div>
+
+<form action="{{ url_for('challenge_3_submit') }}" method="post">
+    <input type="text" name="guess" placeholder="You shall perish in this hall fool...">
+    <button type="submit">Submit</button>
+</form>
+
+{% if error %}
+<div class="error">
+    {{ error }}
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>File Contents</h2>
+
+<div class="story">
+    <p>You found a hidden scroll with mysterious text...</p>
+</div>
+
+<div class="pre-content">
+{{ file_content }}
+</div>
+
+<div style="margin-top: 20px; text-align: center;">
+    <p>This information may be useful in your quest. Return to your challenge and use it wisely.</p>
+    <button onclick="window.history.back()">Return to Challenge</button>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}{{ artifact.name }}{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <div class="detail-header">
+        <img src="/static/images/artifact_{{ artifact.id }}.jpg" alt="{{ artifact.name }}" class="detail-image">
+        <div class="detail-info">
+            <h2>{{ artifact.name }}</h2>
+            <p><strong>Location:</strong> {{ artifact.location }}</p>
+            <p><strong>Power Level:</strong> {{ artifact.power }}</p>
+        </div>
+    </div>
+    
+    <h3>Description</h3>
+    <p>{{ artifact.description }}</p>
+    
+    <h3>Historical Context</h3>
+    <p>This artifact dates back to the reign of Pharaoh Khnum-Khufu, circa 2580 BCE. It was discovered in the temple complex at Karnak by the expedition of Sir Arthur Millbrook in 1923.</p>
+    
+    <h3>Magical Properties</h3>
+    <p>According to ancient texts, this artifact possesses the ability to {{ ["ward off evil spirits", "enhance the wearer's strength", "provide clear vision in darkness", "protect against venomous creatures", "reveal hidden truths"] | random }}.</p>
+    
+    <a href="/" class="card-button">Back to Collection</a>
+</div>
+
+<div class="temple-scanner">
+    <div class="scanner-header">
+        <img src="/static/images/ankh.png" alt="Ankh Symbol">
+        <h3>Sacred Text Translator</h3>
+    </div>
+    <p>Use this ancient tool to translate hieroglyphic texts found within the temple.</p>
+    
+    <div class="form-group">
+        <label for="ancient-text">Enter Sacred Text:</label>
+        <textarea id="ancient-text" class="form-control" rows="5" placeholder="Paste hieroglyphic text here..."></textarea>
+    </div>
+    
+    <button id="translate-btn" class="btn">Translate with Ancient Magic</button>
+    
+    <div id="translation-output" class="output-container"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Translate button functionality
+    document.getElementById('translate-btn').addEventListener('click', function() {
+        const text = document.getElementById('ancient-text').value;
+        const outputContainer = document.getElementById('translation-output');
+        
+        if (!text) {
+            alert('Please enter some text to translate!');
+            return;
+        }
+        
+        fetch('/api/sacred-texts/translate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text })
+        })
+        .then(response => {
+            console.log("Translation response status:", response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Translation response data:", data);
+            outputContainer.style.display = 'block';
+            
+            if (data.status === 'success') {
+                outputContainer.innerHTML = `
+                    <strong>Translation:</strong> ${data.translation}<br>
+                    <strong>Scribe's Notes:</strong><br>${data.scribe_notes}
+                `;
+            } else {
+                outputContainer.innerHTML = `<strong>Error:</strong> ${data.message}`;
+            }
+        })
+        .catch(error => {
+            console.error("Translation error:", error);
+            outputContainer.style.display = 'block';
+            outputContainer.innerHTML = `<strong>Error:</strong> ${error.message}`;
+        });
+    });
+});
+</script>
+{% endblock %}

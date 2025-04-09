@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Worker Dashboard - Ancient Egyptian Adventure{% endblock %}
+
+{% block body_class %}dashboard-page worker-theme{% endblock %}
+
+{% block header %}
+<header>
+    <h1>Worker's Daily Tasks</h1>
+    <p class="subtitle">Logged in as: {{ session.username }}</p>
+    <div class="logout-container">
+        <a href="{{ url_for('logout') }}" class="btn logout-btn">End Shift</a>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="papyrus-scroll">
+        <h2>Tasks for Today</h2>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="task-list">
+            {% for task in tasks %}
+                <div class="task-item">
+                    <div class="task-marker">
+                        <img src="{{ url_for('static', filename='images/ankh_bullet.png') }}" alt="Task marker">
+                    </div>
+                    <div class="task-text">{{ task }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="worker-message">
+            <p>Complete all tasks before sunset or face the Pharaoh's displeasure.</p>
+            <p>Glory to Egypt and its eternal monuments!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer_content %}
+<!-- Remember: In the eyes of Ra, all workers are equal -->
+<p>© Ancient Egyptian IT Department</p>
+{% endblock %}
